@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CRSL Bestfriend Match</title>
+<style>
+:root{--bg:#f4f3ef;--fg:#141414;--card:#fff;--ac:#ff5a36;--acfg:#fff;--mut:#6b6b6b;--ln:#e2e0d9;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1115;--fg:#f3f3f1;--card:#1a1d23;--ac:#ff7a5c;--acfg:#141414;--mut:#a2a5ab;--ln:#2b2f37}}
+:root[data-theme="dark"]{--bg:#0f1115;--fg:#f3f3f1;--card:#1a1d23;--ac:#ff7a5c;--acfg:#141414;--mut:#a2a5ab;--ln:#2b2f37}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5}
+main{max-width:520px;margin:0 auto;padding:20px 16px 40px}
+.logo{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px}
+.logo b{font-size:28px;letter-spacing:.18em}
+.logo span{font-size:12px;color:var(--mut)}
+.hud{background:var(--card);border:1px solid var(--ln);border-radius:14px;padding:10px 14px;margin-bottom:14px;font-size:13px}
+.hud div{display:flex;justify-content:space-between;margin-bottom:6px}
+.bar{height:10px;background:var(--ln);border-radius:9px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ac);border-radius:9px;transition:width .4s}
+.card{background:var(--card);border:1px solid var(--ln);border-radius:18px;padding:22px 18px}
+h1{font-size:26px;line-height:1.2;margin:0 0 10px}
+h2{font-size:20px;margin:0 0 14px;line-height:1.3}
+p{margin:0 0 14px}
+.mut{color:var(--mut);font-size:13px}
+button{font:inherit;cursor:pointer;border-radius:12px;border:2px solid var(--fg);background:var(--card);color:var(--fg);padding:12px 14px;text-align:left;width:100%;margin-bottom:9px;transition:transform .1s}
+button:active{transform:scale(.98)}
+button:hover{border-color:var(--ac)}
+.go{background:var(--ac);color:var(--acfg);border-color:var(--ac);text-align:center;font-weight:700}
+.big{font-size:56px;text-align:center;margin:4px 0}
+.tag{display:inline-block;background:var(--ac);color:var(--acfg);border-radius:20px;padding:2px 12px;font-size:12px;font-weight:700;margin-bottom:8px}
+.row{display:flex;align-items:center;gap:8px;font-size:12px;margin-bottom:5px}
+.row span:first-child{width:108px}
+.row .bar{flex:1;height:8px}
+.code{border:2px dashed var(--ac);border-radius:12px;padding:12px;text-align:center;margin:14px 0}
+.code b{font-size:20px;letter-spacing:.12em}
+.cap{background:var(--bg);border-radius:10px;padding:10px;font-size:13px;margin-bottom:10px;white-space:pre-wrap}
+details{margin-top:18px;background:var(--card);border:1px solid var(--ln);border-radius:14px;padding:12px 14px;font-size:13px}
+summary{cursor:pointer;font-weight:700}
+</style>
+</head>
+<body>
+<main>
+  <div class="logo"><b>CRSL</b><span>Animals as your Bestfriends!</span></div>
+  <div class="hud"><div><span id="lv">Level: Calon Adopter</span><span id="xp">0 XP</span></div><div class="bar"><i id="xb" style="width:0%"></i></div></div>
+  <div class="card" id="app"></div>
+  <details>
+    <summary>Catatan konsep (untuk dosen)</summary>
+    <p style="margin-top:10px"><b>Tujuan:</b> awareness dan engagement audiens mahasiswa Jogja lewat karakter maskot CRSL.</p>
+    <p><b>Mekanik:</b> jawab 5 pertanyaan → kumpulkan XP → dapat maskot “bestfriend” + level adopter → screenshot, share ke IG Story, tag @crsl.store dan ajak 3 teman.</p>
+    <p><b>Reward (usulan):</b> voucher diskon untuk adopter baru; 3 story terbaik mingguan dapat merchandise.</p>
+    <p><b>KPI:</b> jumlah story yang men-tag, share, save, dan klik ke website.</p>
+    <p class="mut">Kepribadian maskot diinterpretasi dari nama karakter (Crochety Odin, Graceful Chilo, Gingerly Popo, Comfy Choco, Shiftless Pigko). Kode voucher di halaman ini hanya simulasi tugas.</p>
+  </details>
+</main>
+<script>
+var M={
+O:{n:"Crochety Odin",e:"😤",t:"Si Tegas Penuh Opini",d:"Kamu suka serba siap dan blak-blakan. Kalau ada yang salah, kamu yang pertama bilang. Teman setia yang selalu bawa cadangan.",p:"Backpack Collection: muat semua kebutuhanmu."},
+C:{n:"Graceful Chilo",e:"✨",t:"Si Anggun Rapi",d:"Kamu tenang, rapi, dan selalu terlihat on point. Gaya kamu jadi inspirasi satu kelas tanpa perlu usaha berlebih.",p:"Slingbag Collection: ringkas dan elegan."},
+P:{n:"Gingerly Popo",e:"🧐",t:"Si Hati-hati Perencana",d:"Kamu teliti dan selalu punya rencana. Jadwal, bekal, rute: semua sudah dicek sebelum berangkat.",p:"Tumbler Collection: bekal dan minum siap sedia."},
+H:{n:"Comfy Choco",e:"☕",t:"Si Santai Nyaman",d:"Kamu pecinta nyaman. Vibe kamu hangat, bikin orang betah ngobrol berjam-jam di sebelahmu.",p:"Outerwear dan Tops: nyaman dari pagi sampai malam."},
+S:{n:"Shiftless Pigko",e:"😴",t:"Si Santuy Penunda",d:"Kamu hidup dengan prinsip “nanti aja”. Tapi anehnya, kamu yang paling jago lahir ide di menit terakhir.",p:"Headwear Collection: tinggal pakai, langsung jadi."}
+};
+var Q=[
+["Weekend di Jogja, kamu paling pilih…",[["Nongkrong di angkringan, sambil komen soal apa saja","O"],["Keliling pameran seni dengan outfit rapi","C"],["Cek rute dan jam buka dulu, baru berangkat","P"],["Ngopi di kafe sampai sore","H"],["Rebahan dulu, nanti aja keluarnya","S"]]],
+["Isi tas kamu hari ini…",[["Semua ada, power bank sampai payung","O"],["Sedikit tapi tertata","C"],["Botol minum, bekal, dan catatan jadwal","P"],["Hoodie tipis dan camilan","H"],["Entah, lupa cek","S"]]],
+["Tugas deadline besok. Reaksimu?",[["Marah dulu, baru mengerjakan","O"],["Kerjakan pelan-pelan sampai tuntas","C"],["Sudah selesai kemarin dong","P"],["Bikin teh dulu biar tenang","H"],["Mulai jam 11 malam, hasilnya tetap jadi","S"]]],
+["Gaya outfit kuliahmu…",[["Fungsional, banyak kantong","O"],["Clean dan matching","C"],["Rapi dan sesuai cuaca","P"],["Oversize paling nyaman","H"],["Ambil yang paling atas di lemari","S"]]],
+["Kata teman sekelompok, kamu itu…",[["Yang paling vokal","O"],["Yang paling kalem","C"],["Yang paling teliti","P"],["Yang bikin suasana adem","H"],["Yang idenya muncul tiba-tiba","S"]]]
+];
+var LV=["Calon Adopter","Adopter Baru","Adopter Aktif","Adopter Setia","Adopter Sejati","Bestfriend Sejati"];
+var i=0,sc={},app=document.getElementById("app");
+function hud(){var x=i*20;document.getElementById("xp").textContent=x+" XP";document.getElementById("xb").style.width=x+"%";document.getElementById("lv").textContent="Level: "+LV[i]}
+function start(){i=0;sc={O:0,C:0,P:0,H:0,S:0};hud();
+app.innerHTML='<div class="big">🐾</div><h1>Hewan mana yang jadi bestfriend kamu?</h1><p>Jawab 5 pertanyaan, kumpulkan XP, dan temukan maskot CRSL yang paling cocok dengan kepribadianmu.</p><button class="go" id="s">Mulai Main</button><p class="mut">Estimasi 1 menit. Ada hadiah di akhir.</p>';
+document.getElementById("s").onclick=ask}
+function ask(){hud();var q=Q[i];
+var h='<span class="tag">Misi '+(i+1)+' dari '+Q.length+'</span><h2>'+q[0]+'</h2>';
+q[1].forEach(function(o,k){h+='<button data-k="'+o[1]+'">'+o[0]+'</button>'});
+app.innerHTML=h;
+app.querySelectorAll("button").forEach(function(b){b.onclick=function(){sc[b.dataset.k]++;i++;i<Q.length?ask():res()}})}
+function res(){hud();
+var k=Object.keys(sc).sort(function(a,b){return sc[b]-sc[a]})[0],m=M[k],pct=Math.round(sc[k]/Q.length*100);
+var code="ADOPT-"+k+(pct+7)+"CRSL";
+var cap="Aku di-match sama "+m.n+" "+m.e+" ("+m.t+")! Kamu bestfriend CRSL yang mana? Coba kuis-nya dan tag @crsl.store";
+var h='<div class="big">'+m.e+'</div><div style="text-align:center"><span class="tag">Match '+pct+'%</span></div><h1 style="text-align:center;margin-bottom:4px">'+m.n+'</h1><p class="mut" style="text-align:center">'+m.t+'</p><p>'+m.d+'</p><p><b>Item yang cocok:</b> '+m.p+'</p>';
+Object.keys(M).forEach(function(x){h+='<div class="row"><span>'+M[x].n.split(" ")[1]+'</span><div class="bar"><i style="width:'+(sc[x]/Q.length*100)+'%"></i></div></div>'});
+h+='<div class="code"><span class="mut">Hadiah Adopter (simulasi)</span><br><b>'+code+'</b></div>';
+h+='<div class="cap" id="cap">'+cap+'</div><button class="go" id="cp">Salin Caption untuk IG Story</button><button id="ag">Main Lagi</button><p class="mut">Tantangan: screenshot hasilmu, tag @crsl.store, dan ajak 3 temanmu!</p>';
+app.innerHTML=h;
+document.getElementById("ag").onclick=start;
+document.getElementById("cp").onclick=function(){var b=this;try{navigator.clipboard.writeText(cap).then(function(){b.textContent="Tersalin ✓"},function(){b.textContent="Salin manual dari kotak di atas"})}catch(e){b.textContent="Salin manual dari kotak di atas"}}}
+start();
+</script>
+</body>
+</html>
